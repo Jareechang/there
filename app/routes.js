@@ -1,7 +1,42 @@
 module.exports = function(app, passport) {
 
     // Home 
-    app.get('/', function(req,res){
+    app.get('/', function(req, res) {
         res.render('index.ejs');
     })    
+
+    // Login
+    app.get('/login', function(req, res) {
+        res.render('login.ejs', { message: req.flash('Welcome to There') });
+    }) 
+
+    // Signup
+    app.get('/signup', function(req, res) {
+        res.render('signup.ejs', { message: req.flash('Sign up for a new account!') })
+    })
+    //app.post('/signup', handle passport);
+   
+    // User profile 
+    app.get('/profile', function(req, res) {
+        res.render('profile.ejs', {
+            user : req.user
+        }) 
+    })
+
+    // Logout
+    app.get('/logout', function(req, res) {
+        res.logout();
+        res.redirect('/');
+    })
+}
+
+// Authenticate middleware
+
+function isLoggedIn(req,res,next) {
+    // If they are authenicated, then proceed
+    if(req.isAuthenticated()) 
+        return next();
+    
+    // For anything else, redirect to root 
+    res.redirect('/');
 }
