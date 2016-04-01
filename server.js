@@ -37,5 +37,5 @@ require('./app/routes.js')(app, passport); // Load routes with app && loaded pas
 
 app.listen(port);
 
-console.log('stuff is happen on ' + port);
+console.log('stuff is happening on ' + port);
 
