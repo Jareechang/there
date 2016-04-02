@@ -45,17 +45,17 @@ module.exports = function(sequelize, DataTypes) {
 
     /* Model Methods ––––––––––––––––––– */ 
 
-    var hasSecurePassword = function(user, options, cb) {
+    var hasSecurePassword = function(user, options, next) {
         hash.setPassword(user.password, function(err,hash){
             if(err) return console.log(err);
             user.passwordDigest = hash;
-            return cb(null,options);
+            return next(null,options);
         })
     }
 
     /* Model Callbacks ––––––––––––––––––– */ 
 
-    User.beforeValidate(function(user, options, cb){
+    User.beforeValidate(function(user, options, next){
         // email lower case 
         user.email = user.email.toLowerCase();
 
@@ -63,7 +63,7 @@ module.exports = function(sequelize, DataTypes) {
             throw new Error("password and password confirmation does not match");
 
         if(user.password) 
-            hasSecurePassword(user, options, cb);
+            hasSecurePassword(user, options, next);
     })
 
    return User;
