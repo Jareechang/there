@@ -12,18 +12,15 @@ function setHashedPassword(value,cb) {
     bcrypt.hash(value, saltRounds, function(err, hash) {
         // Callback function passing in new hash
         if(err) return cb(err);
-        cb(hash);
+        cb(null,hash);
     });
 }
 
-function comparePassword(plainText, hash,cb) {
-    bcrypt.compare(plainText,hash, function(err, res){
-        if(err) return cb(err);
-        cb(res);
-    })
+function compare(plainText, hash,cb) {
+    return bcrypt.compareSync(myPlaintextPassword, hash);
 }
 
 module.exports = {}
 module.exports.setPassword = setHashedPassword;
-module.exports.equal = comparePassword;
+module.exports.equal = compare;
 

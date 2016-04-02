@@ -1,29 +1,71 @@
 'use strict';
 
-// Export to a hash module
-var bcrypt = require('bcrypt');
+var hash = require('../helpers/hash.js');
 
 module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define('User', {
-            id: { type: DataTypes.INTEGER, autoIncrement: true },
-      username: { type: DataTypes.STRING,  allowNull: false, unique: true },
-         email: { type: DataTypes.STRING,  allowNull: false, unique: true },
-      password: { 
-          type: DataTypes.STRING, 
-          allowNull: false, 
-          unique: true,
-          set: function(val) {
-          }
-      }
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    },
-    instaceMethods: {
 
+    /* Model Defition ––––––––––––––––––– */ 
+
+    var User = sequelize.define('User', {
+        id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+        firstName: { type: DataTypes.STRING,  allowNull: false, unique: true },
+        lastName: { type: DataTypes.STRING,  allowNull: false, unique: true },
+        email: { 
+             type: DataTypes.STRING,
+             allowNull: false, 
+             unique: true
+        },
+        password: {
+            type: DataTypes.VIRTUAL,
+            allowNull: false,
+            validate: {
+                notEmpty: true
+            }
+        },
+        passwordConfirmation: {
+            type: DataTypes.VIRTUAL,
+        },
+        passwordDigest: { 
+            type: DataTypes.STRING, 
+            validate: {
+                notEmpty: true
+            }
+        }
+    }, {
+        underscored: false,
+        classMethods: {
+            associate: function(models) {
+                // associations can be defined here
+            }
+        },
+        instaceMethods: {
+
+        }
+    });
+
+    /* Model Methods ––––––––––––––––––– */ 
+
+    var hasSecurePassword = function(user, options, cb) {
+        hash.setPassword(user.password, function(err,hash){
+            if(err) return console.log(err);
+            user.passwordDigest = hash;
+            return cb(null,options);
+        })
     }
-  });
-  return User;
+
+    /* Model Callbacks ––––––––––––––––––– */ 
+
+    User.beforeValidate(function(user, options, cb){
+        // email lower case 
+        user.email = user.email.toLowerCase();
+
+        if(user.password != user.passwordConfirmation) 
+            throw new Error("password and password confirmation does not match");
+
+        if(user.password) 
+            hasSecurePassword(user, options, cb);
+    })
+
+   return User;
 };
+
