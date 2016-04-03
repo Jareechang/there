@@ -8,7 +8,7 @@ const saltRounds = 10;
  *
  * */
 
-function setHashedPassword(value,cb) {
+function setPassword(value,cb) {
     bcrypt.hash(value, saltRounds, function(err, hash) {
         // Callback function passing in new hash
         if(err) return cb(err);
@@ -21,6 +21,6 @@ function equal(plainText, hash) {
 }
 
 module.exports = {}
-module.exports.setPassword = setHashedPassword;
+module.exports.setPassword = setPassword;
 module.exports.equal = equal;
 
