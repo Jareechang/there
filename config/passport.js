@@ -17,10 +17,11 @@ module.exports = function(passport) {
     })
 
     passport.use('login', new LocalStrategy({
-        userNameField: 'email',
+        usernameField: 'email',
         passwordField: 'password',
         passReqToCallback: true
-    }, function(req,email , password,done){
+    }, function(req,email, password,done){
+
         User.find({
             where: {
                 email: email 
@@ -81,11 +82,9 @@ module.exports = function(passport) {
                 }
             })
             .error(function(err){
-                console.log('horrible error omgz!');
                 return done(err);
             })
         })
-
     }))
 }
 

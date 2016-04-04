@@ -10,10 +10,18 @@ module.exports = function(app, passport) {
         res.render('login.ejs', { message: req.flash('Welcome to There') });
     }) 
 
+    app.post('/login', passport.authenticate('login', {
+        successRedirect: '/profile',
+        failureRedirect: '/login', 
+        failureFlash: true
+    })) 
+
+
     // Signup
     app.get('/signup', function(req, res) {
         res.render('signup.ejs', { message: req.flash('Sign up for a new account!') })
     })
+
 
     app.post('/signup', passport.authenticate('local', {
         successRedirect : '/profile', // redirect to the secure profile section
