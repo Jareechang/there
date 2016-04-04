@@ -16,7 +16,7 @@ var env = require('./config/env/all.js') || {};
 /**
  * configuration ––––––––––––––––––––––––––––––––––––––
  */
-// require('./config/passport')(passport);
+ require('./config/passport')(passport);
 
 app.use(morgan('dev'));  // handling loging in conosle
 app.use(cookieParser()); // handling cookies

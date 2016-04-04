@@ -14,8 +14,13 @@ module.exports = function(app, passport) {
     app.get('/signup', function(req, res) {
         res.render('signup.ejs', { message: req.flash('Sign up for a new account!') })
     })
-    //app.post('/signup', handle passport);
-   
+
+    app.post('/signup', passport.authenticate('local', {
+        successRedirect : '/profile', // redirect to the secure profile section
+        failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    })); 
+
     // User profile 
     app.get('/profile', function(req, res) {
         res.render('profile.ejs', {

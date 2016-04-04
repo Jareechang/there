@@ -1,31 +1,33 @@
-var localStrategy = require('passport').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models').User;
 
 module.exports = function(passport) {
 
     passport.serializeUser(function(user, done){
-        done(null, cb);
+        done(null, user.id);
     })
 
     passport.deserializeUser(function(id, done){
         User.findById(id)
             .then(function(user){
-                done(err,user);
+                done(null,user);
+            }).error(function(err){
+                done(err);
             })
     })
 
-    passport.user('local-signup', new localStrategy({
+    passport.use('local', new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password',
         passReqToCallback: true
-        
-    }, function(req, firstName, lastName, email, password,passwordConfirmation, done){
+    }, function(req, email, password, done){
 
         process.nextTick(function(){
 
             var userEmail = email;
+            var param = req.body;
 
-            User.findOrCreate({
+            User.find({
                 where: {
                     email: userEmail 
                 }
@@ -35,14 +37,11 @@ module.exports = function(passport) {
                     return done(null, false, req.flash('signUpMessage', 'Email is already taken'));
                 }
                 else  {
-
-                    var newUser = User.build(
-                                   firstName: firstName,
-                                    lastName: lastName
-                                       email: email,
-                        passwordConfirmation: passwordConfirmation,
-                                    password: password
-                    );
+                    var newUser = User.build({ firstName: param.firstName,
+                                                lastName: param.lastName,
+                                                   email: email,
+                                    passwordConfirmation: param.passwordConfirmation,
+                                                password: password });
 
                     newUser.save()
                         .then(function(user){
@@ -54,6 +53,7 @@ module.exports = function(passport) {
                 }
             })
             .error(function(err){
+                console.log('horrible error omgz!');
                 return done(err);
             })
         })
