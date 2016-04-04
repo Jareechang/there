@@ -1,8 +1,11 @@
 var localStrategy = require('passport').Strategy;
 var User = require('../models').User;
 
-var user = User.build({ firstName: "em", lastName: "Cool", password: "dogs", passwordConfirmation: "dogs", email: "em@world.com"})
-user.save();
+//User.create({ firstName: "em", lastName: "Cool", password: "dogs", passwordConfirmation: "dogs", email: "em@world.com"})
+User.findById(19)
+    .then(function(user){
+        console.log("password is ... " + user.validPassword("dogs"));
+    })
 
 module.exports = function(passport) {
 

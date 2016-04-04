@@ -38,8 +38,13 @@ module.exports = function(sequelize, DataTypes) {
                 // associations can be defined here
             }
         },
-        instaceMethods: {
-
+        instanceMethods: {
+            logFullName: function() {
+                console.log(this.firstName + " " + this.lastName);
+            }, 
+            validPassword: function(password) {
+                return hash.copmare(password, this.passwordDigest);
+            }
         }
     });
 
