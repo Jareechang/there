@@ -39,8 +39,8 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
         instanceMethods: {
-            logFullName: function() {
-                console.log(this.firstName + " " + this.lastName);
+            fullName: function() {
+                return this.firstName + " " + this.lastName;
             }, 
             validPassword: function(password) {
                 return hash.validPassword(password, this.passwordDigest);
