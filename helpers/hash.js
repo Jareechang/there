@@ -16,11 +16,11 @@ function setPassword(value,cb) {
     });
 }
 
-function compare(plainText, hash) {
-    return bcrypt.compareSync(plainText, hash);
+function validPassword(password, hash) {
+    return bcrypt.compareSync(password, hash);
 }
 
 module.exports = {}
 module.exports.setPassword = setPassword;
-module.exports.compare = compare;
+module.exports.validPassword = validPassword;
 

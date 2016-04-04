@@ -16,6 +16,34 @@ module.exports = function(passport) {
             })
     })
 
+    passport.use('login', new LocalStrategy({
+        userNameField: 'email',
+        passwordField: 'password',
+        passReqToCallback: true
+    }, function(req,email , password,done){
+        User.find({
+            where: {
+                email: email 
+            }
+        })
+        .then(function(user){
+            if(!user) {
+                console.log('user not found');
+                return done(null,false, req.flash('message', 'User not found.'));
+            }
+
+            if(!user.validPassword(password)) {
+                console.log('invalid password');
+                return done(null, false, req.flash('message', 'Invalid password'));
+            }
+
+            return done(null, user);
+        })
+        .error(function(err){
+            return done(err);
+        })
+    }))
+
     passport.use('local', new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password',

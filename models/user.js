@@ -43,7 +43,7 @@ module.exports = function(sequelize, DataTypes) {
                 console.log(this.firstName + " " + this.lastName);
             }, 
             validPassword: function(password) {
-                return hash.copmare(password, this.passwordDigest);
+                return hash.validPassword(password, this.passwordDigest);
             }
         }
     });
