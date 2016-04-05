@@ -4,6 +4,8 @@ var port = process.env.PORT || 8080;
 var passport = require('passport');
 var flash = require('connect-flash');
 
+var models = require("./models/");
+
 var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -16,7 +18,7 @@ var env = require('./config/env/all.js') || {};
 /**
  * configuration ––––––––––––––––––––––––––––––––––––––
  */
- require('./config/passport')(passport);
+ require('./config/passport')(passport,models);
 
 app.use(morgan('dev'));  // handling loging in conosle
 app.use(cookieParser()); // handling cookies
@@ -33,9 +35,11 @@ app.use(flash());
  * routes ––––––––––––––––––––––––––––––––––––––
  */
 
-require('./app/routes.js')(app, passport); // Load routes with app && loaded passport as depedencies
+require('./app/routes.js')(app, passport,models); // Load routes with app && loaded passport as depedencies
 
-app.listen(port);
+models.sequelize.sync().then(function () {
+    app.listen(port);
+})
 
 console.log('stuff is happening on ' + port);
 

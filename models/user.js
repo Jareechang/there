@@ -69,8 +69,9 @@ module.exports = function(sequelize, DataTypes) {
     /* Model Callbacks ––––––––––––––––––– */ 
 
     User.beforeValidate(function(user, options, next){
-        // email lower case 
-        user.email = user.email.toLowerCase();
+        if(user.email)
+            // email lower case 
+            user.email = user.email.toLowerCase();
 
         if(user.password != user.passwordConfirmation) 
             throw new Error("password and password confirmation does not match");

@@ -1,13 +1,16 @@
 var multer  = require('multer');
 var upload = multer({ dest: './uploads/'});
 
-module.exports = function(app, passport) {
+module.exports = function(app, passport,models) {
+
+    var User = models.User;
+    var sequelize = models.sequelize;
+    var currentUser = null;
 
     // Home 
     app.get('/', function(req, res) {
         res.render('index.ejs');
     })    
-    
     app.post('/login', passport.authenticate('login', {
         successRedirect: '/profile',
         failureRedirect: '/login', 
@@ -16,6 +19,9 @@ module.exports = function(app, passport) {
 
     // Login
     app.get('/login', function(req, res) {
+        if(currentUser) {
+            console.log('current user = ', currentUser.firstName);
+        }
         res.render('login.ejs', { message: req.flash('Welcome to There') });
     }) 
 
@@ -24,9 +30,18 @@ module.exports = function(app, passport) {
         res.render('signup.ejs', { message: req.flash('Sign up for a new account!') })
     })
 
-    app.post('/profile', upload.single('avatar'), function(req,res,next){
-        console.log(req.file);
-        console.log(req.body);
+    app.post('/avatar/upload', upload.single('avatar'), function(req,res,next){
+
+        if(!req.file) 
+            throw new Error("req.file does not exist");
+
+        sequelize.query("UPDATE users set image_url= \'" + req.file.path + "\' where id = \'" + req.user.id + "\'" )
+        .then(function(results){
+            res.redirect('/profile');
+        })
+        .error(function(err){
+            next(err);
+        })
     })
 
     app.post('/signup', passport.authenticate('local', {
@@ -37,6 +52,11 @@ module.exports = function(app, passport) {
 
     // User profile 
     app.get('/profile', function(req, res) {
+        // assign current user
+        currentUser = req.user;
+
+        if(!req.user) return res.redirect('/login');
+
         res.render('profile.ejs', {
             user : req.user
         }) 
