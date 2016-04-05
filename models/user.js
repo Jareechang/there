@@ -17,8 +17,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         image_url: { 
              type: DataTypes.STRING,
-             allowNull: false, 
-             unique: true
+             allowNull: true 
         },
         password: {
             type: DataTypes.VIRTUAL,

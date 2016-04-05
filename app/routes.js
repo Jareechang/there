@@ -1,5 +1,5 @@
 var multer  = require('multer');
-var upload = multer({ dest: 'uploads/'});
+var upload = multer({ dest: './uploads/'});
 
 module.exports = function(app, passport) {
 
@@ -7,26 +7,26 @@ module.exports = function(app, passport) {
     app.get('/', function(req, res) {
         res.render('index.ejs');
     })    
-
-    // Login
-    app.get('/login', function(req, res) {
-        res.render('login.ejs', { message: req.flash('Welcome to There') });
-    }) 
-
+    
     app.post('/login', passport.authenticate('login', {
         successRedirect: '/profile',
         failureRedirect: '/login', 
         failureFlash: true
     })) 
 
+    // Login
+    app.get('/login', function(req, res) {
+        res.render('login.ejs', { message: req.flash('Welcome to There') });
+    }) 
 
     // Signup
     app.get('/signup', function(req, res) {
         res.render('signup.ejs', { message: req.flash('Sign up for a new account!') })
     })
 
-    app.post('/image/upload', upload.single('avatar'), function(req,res,next){
+    app.post('/profile', upload.single('avatar'), function(req,res,next){
         console.log(req.file);
+        console.log(req.body);
     })
 
     app.post('/signup', passport.authenticate('local', {

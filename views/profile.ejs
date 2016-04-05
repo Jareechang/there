@@ -1,7 +1,26 @@
-<% if (user) { %>
 
-    <p>Full Name: <%= user.fullName() %></p>
+<div class="row">
+    <div class="container">
+        <% if (user) { %>
 
-    <p> Email: <%= user.email %></p>
+        <div class="col-md-12">
+            <p>Full Name: <%= user.fullName() %></p>
+            <p> Email: <%= user.email %></p>
+        </div>
 
-<% } %>
+        <% } %>
+        <div class="col-md-12">
+
+            <form action="/profile" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Avatar upload</label>
+                    <input type="file" class="form-control" name="avatar">
+                </div>
+
+                <button type="submit" class="btn btn-warning btn-lg">Upload</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
