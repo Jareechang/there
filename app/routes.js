@@ -1,3 +1,6 @@
+var multer  = require('multer');
+var upload = multer({ dest: 'uploads/'});
+
 module.exports = function(app, passport) {
 
     // Home 
@@ -22,6 +25,9 @@ module.exports = function(app, passport) {
         res.render('signup.ejs', { message: req.flash('Sign up for a new account!') })
     })
 
+    app.post('/image/upload', upload.single('avatar'), function(req,res,next){
+        console.log(req.file);
+    })
 
     app.post('/signup', passport.authenticate('local', {
         successRedirect : '/profile', // redirect to the secure profile section

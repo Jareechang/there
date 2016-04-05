@@ -15,6 +15,11 @@ module.exports = function(sequelize, DataTypes) {
              allowNull: false, 
              unique: true
         },
+        image_url: { 
+             type: DataTypes.STRING,
+             allowNull: false, 
+             unique: true
+        },
         password: {
             type: DataTypes.VIRTUAL,
             allowNull: false,
@@ -44,7 +49,11 @@ module.exports = function(sequelize, DataTypes) {
             }, 
             validPassword: function(password) {
                 return hash.validPassword(password, this.passwordDigest);
+            },
+            getImage: function() {
+                return this.get('image_url');
             }
+
         }
     });
 
