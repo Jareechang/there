@@ -4,3 +4,4 @@ config/env/*
 **/config.json
 test*
 uploads/*
+config/database.js
