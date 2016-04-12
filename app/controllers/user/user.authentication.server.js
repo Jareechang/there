@@ -1,5 +1,5 @@
 var passport = require('passport');
-var User = require("./models/").User;
+var User = require("../../../models").User;
 
 exports.authenticate =  passport.authenticate('login', {
     successRedirect: '/profile',
@@ -27,7 +27,7 @@ exports.logout = function(req, res) {
 
 // Authenticate middleware
 
-export.isLoggedIn = function(req,res,next) {
+exports.isLoggedIn = function(req,res,next) {
     // If they are authenicated, then proceed
     if(req.isAuthenticated()) 
         return next();

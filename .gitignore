@@ -5,3 +5,5 @@ config/env/*
 test*
 uploads/*
 /config/database.js
+.sass-cache/*
+public/*

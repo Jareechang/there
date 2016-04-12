@@ -1,4 +1,4 @@
-var staticPages = require('./controllers/static.server.controller.js');
+var staticPages = require('../controllers/static.server.controller.js');
 
 module.exports = function(app) {
     app.get('/', staticPages.home);

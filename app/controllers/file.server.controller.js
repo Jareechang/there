@@ -11,4 +11,4 @@ exports.image = function(req,res,next){
         .error(function(err){
             next(err);
         })
-})
+}
