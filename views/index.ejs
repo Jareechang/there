@@ -7,39 +7,52 @@
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
         <link href='https://fonts.googleapis.com/css?family=Poppins:400,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="/css/application.css"> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     </head>
-    <body>
-
+    <script>
+        $(window).scroll(function() {    
+           var scroll = $(window).scrollTop();
+       
+           if (scroll >= 10) {
+               $(".navbar-main").addClass("navbar-scrolled");
+           }else {
+               $(".navbar-main").removeClass("navbar-scrolled");
+           }
+        });
+    </script>
+    <body >
         <% include components/_navbar.ejs %>
+        <div class="row">
+            <div class="hero-container">
 
-        <div class="container">
-            <div class="jumbotron text-center">
-                <h1><span class="fa fa-lock"></span> There authenication</h1>
-                <p>Login or Register with:</p>
-                <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
-                <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
             </div>
         </div>
-        <p>testing</p>
-        <p>testing</p>
-        <p>testing</p>
-        <p>testing</p>
-        <p>testing</p>
-        <p>testing</p>
-        <p>testing</p>
-        <p>testing</p>
-        <p>testing</p>
-        <p>testing</p>
-        <p>testing</p>
-        <p>testing</p>
-        <p>testing</p>
-        <p>testing</p>
-        <p>testing</p>
-        <p>testing</p>
-        <p>testing</p>
-        <p>testing</p>
-        <p>testing</p>
-        <p>testing</p>
-        <p>testing</p>
+        
+        <div class="row linear-gradient_tb_green-pink">
+            <div class="main-container">
+                <div class="container">
+                    <div class="col-md-6">
+                        <p>testing</p>
+                        <p>testing</p>
+                        <p>testing</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>testing</p>
+                        <p>testing</p>
+                        <p>testing</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="container">-->
+            <!--<div class="jumbotron text-center">-->
+                <!--<h1><span class="fa fa-lock"></span> There authenication</h1>-->
+                <!--<p>Login or Register with:</p>-->
+                <!--<a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>-->
+                <!--<a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>-->
+            <!--</div>-->
+        <!--</div>-->
     </body>
 </html>

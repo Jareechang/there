@@ -1,34 +1,73 @@
-body {
-    margin-top:80px;
-}
-
 // BASE variables
 $_site-font: 'Poppins', sans-serif;
+$_white: #FFF;
+$_pop-purple: rgba(212, 184, 255, 0.77);
+$_pop-yellow: #FFFFA2;
+$_lighter-green:rgba(147, 218, 218, 0.2);
 
-.heading4 { 
-    font-size:16px;
-    font-weight:400;
-    font-family:$_site-font;
+.bg-pop-yellow {
+    background-color:$_pop-yellow;
+}
+
+.bg-pop-purple {
+    background-color:$_pop-purple;
+}
+
+.linear-gradient_tb_green-pink {
+    background: $_white; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient($_white, $_lighter-green); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient($_white, $_lighter-green); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient($_white, $_lighter-green); /* For Firefox 3.6 to 15 */
+    background: linear-gradient($_white, $_lighter-green); /* Standard syntax */
+}
+
+.heading4-white { 
+    color:$_white !important;
+    font-size:16px !important;
+    font-family:$_site-font !important;
 }
 
 // Navbar 
 
+.navbar-scrolled {
+    background-color:#5EBBBB !important;
+}
+
 .navbar-main {
-    background-color:transparent !important;
-    z-index:5;
+    background-color:transparent;
+    height:80px;
+    z-index:10;
     border-bottom:none;
 }
 
-/** 
-*   navbar-main > navbar-collapse 
-*/
-.navbar-main
-.collapse.navbar-collapse {
-
-    .nav-list-item {
-        @extend .heading4;
-        letter-spacing: 1px;
-        margin-right:25px;
+.navbar-main {
+    /* navbar collapsed */
+    .navbar__collapsed {
+        .nav-list {
+            margin-right:25px;
+            .nav-list-item {
+                &, a {
+                    @extend .heading4-white;
+                    font-weight:bold;
+                    letter-spacing: 1px;
+                }
+                margin-right:30px;
+                margin-top:15px;
+            }
+        } 
     }
+}
 
+
+/* Hero container*/
+
+.hero-container {
+    background:linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)),url('/images/home-cover-bg.png');
+    background-size:cover;
+    height:600px;
+}
+
+.main-container {
+    margin:50px auto;
+    height:600px;
 }
