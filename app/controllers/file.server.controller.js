@@ -4,7 +4,7 @@ exports.image = function(req,res,next){
     if(!req.file) 
         throw new Error("req.file does not exist");
 
-    user.updateImageUrl
+    user.updateImageUrl()
         .then(function(results){
             res.redirect('/profile');
         })
