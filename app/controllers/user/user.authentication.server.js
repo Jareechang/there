@@ -27,7 +27,7 @@ exports.logout = function(req, res) {
 
 // Authenticate middleware
 
-function isLoggedIn(req,res,next) {
+export.isLoggedIn = function(req,res,next) {
     // If they are authenicated, then proceed
     if(req.isAuthenticated()) 
         return next();

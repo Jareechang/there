@@ -9,4 +9,3 @@ exports.login = function(req, res) {
 exports.signUp =  function(req, res) {
     res.render('signup.ejs', { message: req.flash('Sign up for a new account!') })
 }
-
