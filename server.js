@@ -10,6 +10,8 @@ var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var glob = require('glob');
+var path = require('path');
 
 //var configDB = require('./config/database.js');
 
@@ -35,7 +37,9 @@ app.use(flash());
  * routes ––––––––––––––––––––––––––––––––––––––
  */
 
-require('./app/routes.js')(app, passport,models); // Load routes with app && loaded passport as depedencies
+glob.sync('./app/routes/**/*.js').forEach(function(file){
+    require(path.resolve(file))(app);
+})
 
 models.sequelize.sync().then(function () {
     app.listen(port);

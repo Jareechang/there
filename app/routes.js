@@ -1,21 +1,18 @@
 var multer  = require('multer');
 var upload = multer({ dest: './uploads/'});
+var passport = require('passport');
 
-module.exports = function(app, passport,models) {
+module.exports = function(app) {
 
-    var User = models.User;
     var sequelize = models.sequelize;
-    var currentUser = null;
+    var user = require('./controllers/user.server.controller.js');
 
     // Home 
     app.get('/', function(req, res) {
         res.render('index.ejs');
     })    
-    app.post('/login', passport.authenticate('login', {
-        successRedirect: '/profile',
-        failureRedirect: '/login', 
-        failureFlash: true
-    })) 
+    
+    app.post('/login', user.authenticate);
 
     // Login
     app.get('/login', function(req, res) {
