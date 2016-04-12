@@ -13,7 +13,7 @@ var _styleRootDir =  './app/assets/scss';
 
 var paths = {    
     styles: {
-        watch: _styleRootDir + '/*.scss',
+        watch: _styleRootDir + '/**/*.scss',
         src: _styleRootDir + '/application.scss',
         dest: './public/css'
     }

@@ -1,0 +1,34 @@
+body {
+    margin-top:80px;
+}
+
+// BASE variables
+$_site-font: 'Poppins', sans-serif;
+
+.heading4 { 
+    font-size:16px;
+    font-weight:400;
+    font-family:$_site-font;
+}
+
+// Navbar 
+
+.navbar-main {
+    background-color:transparent !important;
+    z-index:5;
+    border-bottom:none;
+}
+
+/** 
+*   navbar-main > navbar-collapse 
+*/
+.navbar-main
+.collapse.navbar-collapse {
+
+    .nav-list-item {
+        @extend .heading4;
+        letter-spacing: 1px;
+        margin-right:25px;
+    }
+
+}
