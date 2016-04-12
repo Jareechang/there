@@ -15,9 +15,9 @@ exports.profile = function(req, res) {
 }
 
 exports.signup =  passport.authenticate('local', {
-    successRedirect : '/profile', // redirect to the secure profile section
-    failureRedirect : '/signup', // redirect back to the signup page if there is an error
-    failureFlash : true // allow flash messages
+    successRedirect : '/profile', 
+    failureRedirect : '/signup', 
+    failureFlash : true 
 })
 
 exports.logout = function(req, res) {

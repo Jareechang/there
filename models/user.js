@@ -51,8 +51,10 @@ module.exports = function(sequelize, DataTypes) {
             },
             getImage: function() {
                 return this.get('image_url');
+            },
+            updateImageUrl: function(filePath) {
+                return sequelize.query("UPDATE users set image_url= \'" + req.file.path + "\' where id = \'" + req.user.id + "\'" );
             }
-
         }
     });
 
