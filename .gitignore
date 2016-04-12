@@ -7,3 +7,4 @@ uploads/*
 /config/database.js
 .sass-cache/*
 public/*
+tmp/*
