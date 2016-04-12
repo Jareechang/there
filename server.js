@@ -1,5 +1,5 @@
 var express = require('express');
-var app = express();
+jar app = express();
 var port = process.env.PORT || 8080;
 var passport = require('passport');
 var flash = require('connect-flash');

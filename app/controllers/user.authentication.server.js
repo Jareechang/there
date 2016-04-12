@@ -6,3 +6,4 @@ exports.authenticate =  passport.authenticate('login', {
     failureRedirect: '/login', 
     failureFlash: true
 })
+
