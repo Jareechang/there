@@ -3,7 +3,11 @@ $_site-font: 'Poppins', sans-serif;
 $_white: #FFF;
 $_pop-purple: rgba(212, 184, 255, 0.77);
 $_pop-yellow: #FFFFA2;
-$_lighter-green:rgba(147, 218, 218, 0.2);
+$_lighter-green:rgba(147, 218, 218, 0.4);
+
+.margin-reset {
+    margin:0;
+}
 
 .bg-pop-yellow {
     background-color:$_pop-yellow;
@@ -31,6 +35,7 @@ $_lighter-green:rgba(147, 218, 218, 0.2);
 
 .navbar-scrolled {
     background-color:#5EBBBB !important;
+    box-shadow:0 1px 3px 0 rgba(74,69,69,0.25);
 }
 
 .navbar-main {
@@ -42,13 +47,14 @@ $_lighter-green:rgba(147, 218, 218, 0.2);
 
 .navbar-main {
     /* navbar collapsed */
+    transition: linear 0.45s;
     .navbar__collapsed {
+        margin-right:75px;
         .nav-list {
-            margin-right:25px;
             .nav-list-item {
                 &, a {
                     @extend .heading4-white;
-                    font-weight:bold;
+                    font-weight:100;
                     letter-spacing: 1px;
                 }
                 margin-right:30px;
