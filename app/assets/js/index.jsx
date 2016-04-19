@@ -16,7 +16,7 @@ const modalInstance = (
             </Modal.Header>
 
             <Modal.Body>
-                One fine body...
+               testing 123 body...
             </Modal.Body>
 
             <Modal.Footer>

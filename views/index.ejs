@@ -75,5 +75,8 @@
             <!--</div>-->
         <!--</div>-->
     </body>
-    <script src="/js/bundle.js"></script>
+
+    <% if(isDevelopment()) { %>
+        <script src="http://localhost:8080/js/bundle.js"></script>
+    <% } %>
 </html>
