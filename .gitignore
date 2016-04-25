@@ -8,3 +8,4 @@ uploads/*
 .sass-cache/*
 public/*
 tmp/*
+*.log

@@ -7,56 +7,73 @@ import { Modal, Button } from 'react-bootstrap';
  *  Create Modal Instance
  */
 
-const modalInstance = ( 
-    <div className="static-modal">
-        <Modal.Dialog>
 
-            <Modal.Header>
-                 <Modal.Title>Modal title</Modal.Title>
-            </Modal.Header>
+var CustomModal = React.createClass({
+    
+    getInitialState:  function() {
+        return { show: false };
+    }, 
 
-            <Modal.Body>
-            testing
-            </Modal.Body>
+    handleClick: function(event) {
+        this.setState({active: !this.state.active});
+    },
 
-            <Modal.Footer>
-                <Button>Close</Button>
-                <Button bsStyle="primary">Save changes</Button>
-            </Modal.Footer>
+    render: function() {
+        let close = () => this.setState({ show: false });
+        var link = '#';
+        var text = "Log-in";
+            return (
 
-        </Modal.Dialog>
+                <div>
+                    <div id="newRender" href={link} onClick={ () => this.setState({show: true})}>
+                        {text}
+                    </div>
+                    <Modal show={this.state.show} onHide={close} container={this} aria-labelledby="contained-modal-title">
+                            <Modal.Header>
+                                 <Modal.Title>Modal title</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                            testing
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button onClick={close}>Close</Button>
+                                <Button bsStyle="primary">Save changes</Button>
+                            </Modal.Footer>
+                    </Modal>
+                </div>
+        );
+    }
 
-    </div>
-);
+})
 
 var LoginModal = React.createClass({
 
-getInitialState:  function() {
-    return { active: false };
-}, 
+    getInitialState:  function() {
+        return { active: false };
+    }, 
 
-handleClick: function(event) {
-    console.log(`state of login ${this.state.active}`);
-    this.setState({active: !this.state.active});
-},
+    handleClick: function(event) {
+        console.log(`state of login ${this.state.active}`);
+        this.setState({active: !this.state.active});
+    },
 
-render: function() {
-    var link = '#';
-    var text = "Log-in";
-    return(
-        <a href={link} onClick={this.handleClick}>
+    render: function() {
+        var link = '#';
+        var text = "Log-in";
+        return(
+            <a href={link} onClick={this.handleClick}>
             {text}
-        </a>
-    );
-}
+            </a>
+        );
+    }
 })
 
-ReactDOM.render(
-    <LoginModal />,
-    document.getElementById('login')
-);
+//ReactDOM.render(
+    //<LoginModal />,
+    //document.getElementById('login')
+//);
 
 ReactDOM.render(
-    modalInstance, 
+    <CustomModal />, 
     document.getElementById('example')
 );
