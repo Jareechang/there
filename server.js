@@ -14,31 +14,17 @@ var session = require('express-session');
 var glob = require('glob');
 var path = require('path');
 
-var webpack = require('webpack');
-var webpackDevMiddleware = require("webpack-dev-middleware");
-var webPackConfig = require("./webpack.config.js");
-
 var env = require('./config/env/all.js') || {};
 
 app.locals.isDevelopment = function() {
     return process.env.NODE_ENV !== "production";
 }
 
-console.log(process.env.NODE_ENV)
-
 
 /**
  * configuration ––––––––––––––––––––––––––––––––––––––
  */
 require('./config/passport')(passport,models);
-
-/* Use webpack-dev middleware in development */
-
-var compiler = webpack(webPackConfig);
-
-app.use(webpackDevMiddleware(compiler, {
-
-}));
 
 app.use(morgan('dev'));  // handling loging in conosle
 app.use(cookieParser()); // handling cookies
