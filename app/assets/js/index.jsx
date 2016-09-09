@@ -7,6 +7,14 @@ import { Modal, Button } from 'react-bootstrap';
  *  Create Modal Instance
  */
 
+var styles = {
+    headerModal : {
+        color: '#000'
+    },
+    bodyModal: {
+        color: '#000'
+    }
+}
 
 var CustomModal = React.createClass({
     
@@ -23,16 +31,15 @@ var CustomModal = React.createClass({
         var link = '#';
         var text = "Log-in";
             return (
-
                 <div>
                     <div id="newRender" href={link} onClick={ () => this.setState({show: true})}>
                         {text}
                     </div>
                     <Modal show={this.state.show} onHide={close} container={this} aria-labelledby="contained-modal-title">
-                            <Modal.Header>
+                            <Modal.Header style={styles.headerModal}>
                                  <Modal.Title>Modal title</Modal.Title>
                             </Modal.Header>
-                            <Modal.Body>
+                            <Modal.Body style={styles.bodyModal}>
                             testing
                             </Modal.Body>
                             <Modal.Footer>
@@ -43,37 +50,9 @@ var CustomModal = React.createClass({
                 </div>
         );
     }
-
 })
-
-var LoginModal = React.createClass({
-
-    getInitialState:  function() {
-        return { active: false };
-    }, 
-
-    handleClick: function(event) {
-        console.log(`state of login ${this.state.active}`);
-        this.setState({active: !this.state.active});
-    },
-
-    render: function() {
-        var link = '#';
-        var text = "Log-in";
-        return(
-            <a href={link} onClick={this.handleClick}>
-            {text}
-            </a>
-        );
-    }
-})
-
-//ReactDOM.render(
-    //<LoginModal />,
-    //document.getElementById('login')
-//);
 
 ReactDOM.render(
     <CustomModal />, 
-    document.getElementById('example')
+    document.getElementById('login')
 );
