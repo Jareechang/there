@@ -40,7 +40,7 @@ var CustomModal = React.createClass({
                                  <Modal.Title>Modal title</Modal.Title>
                             </Modal.Header>
                             <Modal.Body style={styles.bodyModal}>
-                            testing
+                           stuff 
                             </Modal.Body>
                             <Modal.Footer>
                                 <Button onClick={close}>Close</Button>

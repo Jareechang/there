@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "dev": "./node_modules/.bin/webpack-dev-server --content-base public/js --inline --hot"
+    "dev-server": "PORT='8000' node server.js",
+    "background-watch": "./node_modules/.bin/webpack-dev-server --content-base public/js --inline --hot"
   },
   "dependencies": {
     "babel": "^6.5.2",
