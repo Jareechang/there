@@ -7,7 +7,7 @@ from around the world!
 
 1. Install NPM dependencies 
 
-        ``` bash
+        ```bash 
         npm install
         ```
 
