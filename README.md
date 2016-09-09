@@ -7,20 +7,14 @@ from around the world!
 
 1. Install NPM dependencies 
 
-        ```bash 
-        npm install
-        ```
+        ```npm install```
 
 2. Run background webpack task runner (running hot-reload on port=8080)
 
-        ```bash
-        npm run background-watch
-        ```
+        ```npm run background-watch```
 
 3. Start server on PORT 8000
 
-        ```bash
-        npm run dev-server 
-        ```
+        ```npm run dev-server```
 
 
